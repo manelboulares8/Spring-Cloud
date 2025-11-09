@@ -1,4 +1,5 @@
 package com.manel.etudiantmicroservice.restControllers;
+import com.manel.etudiantmicroservice.dto.APIResponseDto;
 import com.manel.etudiantmicroservice.dto.EtudiantDto;
 import com.manel.etudiantmicroservice.service.EtudiantService;
 import org.springframework.http.HttpStatus;
@@ -14,10 +15,10 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class EtudiantController {
     private EtudiantService etudiantService;
+
     @GetMapping("{id}")
-    public ResponseEntity<EtudiantDto> getEtudiant(@PathVariable ("id")Long id){
-        return new ResponseEntity<EtudiantDto>(
-                etudiantService.getEtudiantById(id),HttpStatus.OK);
+    public ResponseEntity<APIResponseDto> getEtudiantById(@PathVariable ("id")Long id){
+        return new ResponseEntity<APIResponseDto>( etudiantService.getEtudiantById(id),HttpStatus.OK);
 
     }
 

@@ -21,4 +21,17 @@ public class InstitutServiceImpl implements  InstitutService{
         );
         return institutDto;
      }
+    @Override
+    public InstitutDto getInstitutByNom(String nom) {
+        Institut institut = institutRepository.findByNomI(nom)
+                .orElseThrow(() -> new RuntimeException("Institut non trouvé avec le nom: " + nom));
+
+        return new InstitutDto(
+                institut.getIdI(),
+                institut.getNomI(),
+                institut.getLocalisation(),
+                institut.getNumTlf()
+                // autres propriétés...
+        );
+    }
 }

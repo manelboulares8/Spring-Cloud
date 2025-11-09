@@ -1,6 +1,8 @@
 package com.manel.departmentmicroservice.restControllers;
 
 import com.manel.departmentmicroservice.dto.InstitutDto;
+import com.manel.departmentmicroservice.entities.Institut;
+import com.manel.departmentmicroservice.repos.InstitutRepository;
 import com.manel.departmentmicroservice.service.InstitutService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +17,20 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class InstitutController {
     private InstitutService institutService;
+    InstitutRepository institutRepository;
 
     @GetMapping("{id}")
-    public ResponseEntity<InstitutDto> getInsById(@PathVariable ("id")long id){
+    public ResponseEntity<InstitutDto> getInsById(@PathVariable("id") long id) {
         return new ResponseEntity<InstitutDto>(
-                institutService.getInstitutById(id),HttpStatus.OK);}
-
+                institutService.getInstitutById(id), HttpStatus.OK);
     }
+
+    @GetMapping("/by-nom/{nom}")
+    public ResponseEntity<InstitutDto> getInsByNom(@PathVariable("nom") String nom){
+        return new ResponseEntity<>(
+                institutService.getInstitutByNom(nom), HttpStatus.OK);
+    }
+}
 
 
 

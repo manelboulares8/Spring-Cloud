@@ -25,4 +25,5 @@ public class Etudiant {
     private String dateNaissance;
     private String classe;
     private String email;
+    private String nomI;
 }

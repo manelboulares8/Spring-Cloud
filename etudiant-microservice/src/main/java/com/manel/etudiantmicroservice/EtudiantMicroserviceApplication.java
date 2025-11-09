@@ -5,8 +5,10 @@ import com.manel.etudiantmicroservice.repos.EtudiantRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
-
+import org.springframework.web.reactive.function.client.WebClient;
+@EnableFeignClients
 @SpringBootApplication
 public class EtudiantMicroserviceApplication {
 
@@ -23,7 +25,13 @@ public class EtudiantMicroserviceApplication {
                     .prenom("manel")
                     .classe("DSI33")
                     .dateNaissance("1 octobre")
+                    .nomI("ISETN")
                     .build());
         };
+    }
+
+    @Bean
+    public WebClient webClient(){
+        return WebClient.builder().build();
     }
 }
